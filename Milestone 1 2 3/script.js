@@ -7,33 +7,7 @@ Ciascuna icona ha una proprietà "color": utilizzare questa proprietà per visua
 Milestone 3
 Aggiungere alla pagina una select in cui le options corrispondono ai vari tipi di icone (animal, vegetable, user). 
 Quando l'utente seleziona un tipo dalla select, visualizzare solamente le icone corrispondenti.
-BONUS
-1 - modificare la struttura dati fornita e valorizzare la proprietà "color" in modo dinamico: generare in modo 
-casuale un codice colore, sapendo che la notazione esadecimale è formata dal simbolo "#" seguito da 6 caratteri 
-alfanumerici compresi tra 0 e 9 e A e F.
-2 - popolare le options della select della milestone 3 dinamicamente.
-Consigli del giorno
-Come sempre, iniziamo prima di tutto dall'analisi e comprensione della consegna. Scomponiamo il problema in 
-micro-passaggi logici che solamente in un secondo momento trasformeremo in codice.
-Le icone presenti nella struttura dati fanno riferimento alla nota libreria Font Awesome, perciò come prima cosa 
-assicuriamoci di aver inserito il link alla cdn nell'head della pagina. Dopodiché, basandoci sul codice di 
-riferimento nel sito di Font Awesome, analizziamo come è formato il tag <i> di un'icona qualsiasi, 
-in particolare focalizziamoci sulle classi.
-Come possiamo usare i dati presenti nella nostra struttura dati per creare l'elemento html nel modo corretto 
-e visualizzare l'icona in pagina?
-Inizialmente può essere sufficiente stampare dei semplici div, senza alcuno stile, con all'interno l'icona e 
-uno span con il nome.
-Solamente quando la parte logica è completa, ci dedichiamo al css.
-NB: L'esercizio My Team con array di oggetti e questo sulle icone sono due esercizi chiave per poter svolgere 
-la milestone che incombe. Dedicateci del tempo e approfondite gli argometi trattati.
 */
-
-
-//Milestone 1
-//Partendo dalla struttura dati fornita, visualizzare in pagina un box per ogni icona, 
-//in cui è presente il nome dell'icona e l'icona stessa.
-
-
 
 const playIcons = [
 	{
@@ -151,3 +125,62 @@ const playIcons = [
 ];
 
 console.log(playIcons);
+/*
+
+MILESTONE 1 E 2
+const iconContainer = document.getElementById('icon-container');
+
+  playIcons.forEach(icon => {
+    const iconBox = document.createElement('div');
+    iconBox.className = 'box';
+
+    const iconElement = document.createElement('i');
+    iconElement.className = `${icon.family} ${icon.prefix}${icon.name} icon`;
+    iconElement.style.color = icon.color;
+
+    const iconText = document.createElement('h6');
+    iconText.textContent = icon.name;
+
+    iconBox.appendChild(iconElement);
+    iconBox.appendChild(iconText);
+
+    iconContainer.appendChild(iconBox);
+
+	console.log(iconBox);
+  });
+  */
+
+  //MILESTONE 3
+  const iconContainer = document.getElementById('icon-container');
+  const iconTypeSelect = document.getElementById('icontype');
+  
+   //funzione filtro
+  function filterIcons() {
+    const selectedType = iconTypeSelect.value;
+
+    // Codice per cancellare le icone 
+    iconContainer.innerHTML = '';
+
+    playIcons.forEach(icon => {
+      if (selectedType === 'all' || icon.type === selectedType) {
+        const iconBox = document.createElement('div');
+        iconBox.className = 'box';
+
+        const iconElement = document.createElement('i');
+        iconElement.className = `${icon.family} ${icon.prefix}${icon.name} icon`;
+        iconElement.style.color = icon.color;
+
+        const iconText = document.createElement('h6');
+        iconText.textContent = icon.name;
+
+        iconBox.appendChild(iconElement);
+        iconBox.appendChild(iconText);
+
+        iconContainer.appendChild(iconBox);
+      }
+    });
+  }
+
+
+  filterIcons();
+
