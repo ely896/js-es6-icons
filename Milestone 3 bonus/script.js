@@ -22,120 +22,186 @@ la milestone che incombe. Dedicateci del tempo e approfondite gli argometi tratt
 */
 
 
-
 const playIcons = [
 	{
 		name: 'cat',
 		prefix: 'fa-',
 		type: 'animal',
 		family: 'fas',
-		color: 'orange'
+		color: generateRandomColor()
 	},
 	{
 		name: 'crow',
 		prefix: 'fa-',
 		type: 'animal',
 		family: 'fas',
-		color: 'orange'
+		color: generateRandomColor()
 	},
 	{
 		name: 'dog',
 		prefix: 'fa-',
 		type: 'animal',
 		family: 'fas',
-		color: 'orange'
+		color: generateRandomColor()
 	},
 	{
 		name: 'dove',
 		prefix: 'fa-',
 		type: 'animal',
 		family: 'fas',
-		color: 'orange'
+		color: generateRandomColor()
 	},
 	{
 		name: 'dragon',
 		prefix: 'fa-',
 		type: 'animal',
 		family: 'fas',
-		color: 'orange'
+		color: generateRandomColor()
 	},
 	{
 		name: 'horse',
 		prefix: 'fa-',
 		type: 'animal',
 		family: 'fas',
-		color: 'orange'
+		color: generateRandomColor()
 	},
 	{
 		name: 'hippo',
 		prefix: 'fa-',
 		type: 'animal',
 		family: 'fas',
-		color: 'orange'
+		color: generateRandomColor()
 	},
 	{
 		name: 'fish',
 		prefix: 'fa-',
 		type: 'animal',
 		family: 'fas',
-		color: 'orange'
+		color: generateRandomColor()
 	},
 	{
 		name: 'carrot',
 		prefix: 'fa-',
 		type: 'vegetable',
 		family: 'fas',
-		color: 'green'
+		color: generateRandomColor()
 	},
 	{
 		name: 'apple-alt',
 		prefix: 'fa-',
 		type: 'vegetable',
 		family: 'fas',
-		color: 'green'
+		color: generateRandomColor()
 	},
 	{
 		name: 'lemon',
 		prefix: 'fa-',
 		type: 'vegetable',
 		family: 'fas',
-		color: 'green'
+		color: generateRandomColor()
 	},
 	{
 		name: 'pepper-hot',
 		prefix: 'fa-',
 		type: 'vegetable',
 		family: 'fas',
-		color: 'green'
+		color: generateRandomColor()
 	},
 	{
 		name: 'user-astronaut',
 		prefix: 'fa-',
 		type: 'user',
 		family: 'fas',
-		color: 'blue'
+		color: generateRandomColor()
 	},
 	{
 		name: 'user-graduate',
 		prefix: 'fa-',
 		type: 'user',
 		family: 'fas',
-		color: 'blue'
+		color: generateRandomColor()
 	},
 	{
 		name: 'user-ninja',
 		prefix: 'fa-',
 		type: 'user',
 		family: 'fas',
-		color: 'blue'
+		color: generateRandomColor()
 	},
 	{
 		name: 'user-secret',
 		prefix: 'fa-',
 		type: 'user',
 		family: 'fas',
-		color: 'blue'
+		color: generateRandomColor()
 	}
 ];
 
-console.log(playIcons);
+
+const iconContainer = document.getElementById('icon-container');
+
+  playIcons.forEach(icon => {
+	const iconBox = document.createElement('div');
+	iconBox.className = 'box';
+
+	const iconElement = document.createElement('i');
+	iconElement.className = `${icon.family} ${icon.prefix}${icon.name} icon`;
+	iconElement.style.color = icon.color;
+
+	const iconText = document.createElement('h6');
+	iconText.textContent = icon.name;
+	iconText.style.color = icon.color;
+
+	iconBox.appendChild(iconElement);
+	iconBox.appendChild(iconText);
+
+	iconContainer.appendChild(iconBox);
+
+	console.log(iconBox);
+  });
+
+
+
+
+const select = document.getElementById("icontype");
+
+select.addEventListener("change", function () {
+	console.log("Valore selezionato:", select.value);
+	const selectedType = select.value;
+	// Codice per cancellare le icone 
+	iconContainer.innerHTML = '';
+
+	playIcons.forEach(icon => {
+		if (selectedType === 'all' || icon.type === selectedType) {
+		  const iconBox = document.createElement('div');
+		  iconBox.className = 'box';
+	 
+		  const iconElement = document.createElement('i');
+		  iconElement.className = `${icon.family} ${icon.prefix}${icon.name} icon`;
+		  iconElement.style.color = icon.color;
+	 
+		  const iconText = document.createElement('h6');
+		  iconText.textContent = icon.name;
+	 
+		  iconBox.appendChild(iconElement);
+		  iconBox.appendChild(iconText);
+	 
+		  iconContainer.appendChild(iconBox);
+		}
+	  });
+
+});
+
+
+
+function generateRandomColor() {
+	const letters = '0123456789ABCDEF';
+	let color = '#';
+	for (let i = 0; i < 6; i++) {
+		color += letters[Math.floor(Math.random() * 16)];
+	}
+	return color;
+}
+
+
+

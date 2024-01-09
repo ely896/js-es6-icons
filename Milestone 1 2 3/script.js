@@ -125,62 +125,63 @@ const playIcons = [
 ];
 
 console.log(playIcons);
-/*
 
-MILESTONE 1 E 2
+
+//MILESTONE 1 E 2
+
+
 const iconContainer = document.getElementById('icon-container');
 
   playIcons.forEach(icon => {
-    const iconBox = document.createElement('div');
-    iconBox.className = 'box';
+	const iconBox = document.createElement('div');
+	iconBox.className = 'box';
 
-    const iconElement = document.createElement('i');
-    iconElement.className = `${icon.family} ${icon.prefix}${icon.name} icon`;
-    iconElement.style.color = icon.color;
+	const iconElement = document.createElement('i');
+	iconElement.className = `${icon.family} ${icon.prefix}${icon.name} icon`;
+	iconElement.style.color = icon.color;
 
-    const iconText = document.createElement('h6');
-    iconText.textContent = icon.name;
+	const iconText = document.createElement('h6');
+	iconText.textContent = icon.name;
+	iconText.style.color = icon.color;
 
-    iconBox.appendChild(iconElement);
-    iconBox.appendChild(iconText);
+	iconBox.appendChild(iconElement);
+	iconBox.appendChild(iconText);
 
-    iconContainer.appendChild(iconBox);
+	iconContainer.appendChild(iconBox);
 
 	console.log(iconBox);
   });
-  */
-
-  //MILESTONE 3
-  const iconContainer = document.getElementById('icon-container');
-  const iconTypeSelect = document.getElementById('icontype');
   
-   //funzione filtro
-  function filterIcons() {
-    const selectedType = iconTypeSelect.value;
 
-    // Codice per cancellare le icone 
-    iconContainer.innerHTML = '';
-
-    playIcons.forEach(icon => {
-      if (selectedType === 'all' || icon.type === selectedType) {
-        const iconBox = document.createElement('div');
-        iconBox.className = 'box';
-
-        const iconElement = document.createElement('i');
-        iconElement.className = `${icon.family} ${icon.prefix}${icon.name} icon`;
-        iconElement.style.color = icon.color;
-
-        const iconText = document.createElement('h6');
-        iconText.textContent = icon.name;
-
-        iconBox.appendChild(iconElement);
-        iconBox.appendChild(iconText);
-
-        iconContainer.appendChild(iconBox);
-      }
-    });
-  }
+//MILESTONE 3
 
 
-  filterIcons();
+const select = document.getElementById("icontype");
+
+select.addEventListener("change", function () {
+	console.log("Valore selezionato:", select.value);
+	const selectedType = select.value;
+	// Codice per cancellare le icone 
+	iconContainer.innerHTML = '';
+
+	playIcons.forEach(icon => {
+		if (selectedType === 'all' || icon.type === selectedType) {
+		  const iconBox = document.createElement('div');
+		  iconBox.className = 'box';
+	 
+		  const iconElement = document.createElement('i');
+		  iconElement.className = `${icon.family} ${icon.prefix}${icon.name} icon`;
+		  iconElement.style.color = icon.color;
+	 
+		  const iconText = document.createElement('h6');
+		  iconText.textContent = icon.name;
+	 
+		  iconBox.appendChild(iconElement);
+		  iconBox.appendChild(iconText);
+	 
+		  iconContainer.appendChild(iconBox);
+		}
+	  });
+
+});
 
